@@ -1,0 +1,50 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+
+# Your rule content
+Planejamento do Site para o Dia das Mulheres
+1. Visão Geral
+O objetivo deste site é criar uma experiência interativa e personalizada para homenagear minha namorada no Dia das Mulheres. O site destacará sua evolução ao longo do tempo e permitirá a abertura de uma carta especial, reforçando o carinho e a admiração que sinto por ela.
+2. Funcionalidades
+2.1. Página Inicial
+* Uma mensagem de boas-vindas com animação suave.
+* Botão "Explorar" para acessar as seções do site.
+2.2. Linha do Tempo Interativa
+* Exibição de eventos importantes na vida dela.
+* Cada marco poderá conter uma breve descrição e uma imagem representativa.
+* Animação ao navegar pela linha do tempo, com efeito de deslizamento horizontal.
+2.3. Espaço para Carta
+* Botão "Ler Carta" para abrir uma carta especial.
+* Animação ao abrir a carta, simulando um efeito de digitação.
+* Possibilidade de tocar uma música ambiente ao abrir a carta.
+2.4. Mensagem Final
+* Uma citação inspiradora sobre as mulheres.
+* Um agradecimento por sua presença e impacto positivo na minha vida.
+3. Requisitos Técnicos
+3.1. Frontend
+* React.js (Next.js) para otimizar o carregamento e facilitar a navegação.
+* Styled Components/Tailwind CSS para estilização responsiva e moderna.
+* Framer Motion para animações suaves e interativas.
+3.2. Backend (Opcional)
+* Caso seja necessário armazenar dados dinamicamente, será utilizado Firebase Firestore ou Supabase.
+3.3. Hospedagem e Domínio
+* Vercel para hospedagem gratuita e rápida.
+* Domínio personalizado com o nome dela, adquirido via Namecheap ou Google Domains.
+3.4. Recursos Adicionais
+* Lottie Files para animações personalizadas.
+* Howler.js para controle de áudio (caso a música na carta seja incluída).
+4. Desenvolvimento e Entrega
+1. Configuração do ambiente (setup do projeto com Next.js e Vercel).
+2. Desenvolvimento da página inicial com animações leves.
+3. Criação da linha do tempo interativa.
+4. Implementação do espaço da carta com efeito de digitação.
+5. Refinamento de estilos e experiência do usuário.
+6. Testes e ajustes finais.
+7. Publicação do site e envio do link para ela.
+5. Conclusão
+Este site será um presente único e significativo, demonstrando meu carinho de forma criativa e interativa. O design elegante, a linha do tempo com marcos especiais e a carta surpresa tornarão a experiência memorável para ela no Dia das Mulheres.
+- You can @ files here
+- You can use markdown but dont have to
