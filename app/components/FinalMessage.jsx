@@ -26,7 +26,7 @@ export default function FinalMessage() {
               className="relative w-full max-w-2xl mx-auto aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl"
             >
               <img
-                src="/images/final.jpg"
+                src="/images/final.JPG"
                 alt="Nossa foto especial"
                 className="w-full h-full object-cover"
               />

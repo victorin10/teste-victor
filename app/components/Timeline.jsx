@@ -5,72 +5,74 @@ import Image from 'next/image';
 
 const timelineEvents = [
   {
-    date: 'Fevereiro, 2022',
-    title: 'Início na Faculdade',
-    description: 'Sua primeira calourada, você começou sua jornada na faculdade. Ver sua dedicação aos estudos me enche de orgulho!',
+    id: 1,
+    title: 'Primeiro Encontro',
+    description: 'Onde tudo começou, na calourada da faculdade.',
+    date: 'Março 2023',
     image: '/images/calourada-facul.jpeg',
-    type: 'image'
   },
   {
-    date: 'Conquistas Diárias',
-    title: 'Sua Força e Determinação',
-    description: 'Sua capacidade de equilibrar estudos e vida pessoal com tanta felicidade é inspirador. Você é exemplo de foco e determinação.',
+    id: 2,
+    title: 'Momentos Felizes',
+    description: 'Cada sorriso seu ilumina meu dia.',
+    date: 'Abril 2023',
     image: '/images/feliz.png',
-    type: 'image'
   },
   {
-    date: 'Sempre Presente',
-    title: 'Seu Coração Generoso',
-    description: 'Sua forma de cuidar de mim, mesmo nas coisas mais simples, me deixa muito feliz. Você é mais do que sonhei!',
-    image: '/images/cozinhando.jpg',
-    type: 'image'
+    id: 3,
+    title: 'Cozinhando Juntos',
+    description: 'Descobrindo novos sabores e criando memórias.',
+    date: 'Maio 2023',
+    image: '/images/cozinhando.JPG',
   },
   {
-    date: 'Para todo o sempre',
-    title: 'A modelo mais linda',
-    description: 'Sua beleza exterior é absurda, mas sua beleza interior é ainda maior.',
+    id: 4,
+    title: 'Sua Beleza',
+    description: 'Você é linda por dentro e por fora.',
+    date: 'Junho 2023',
     image: '/images/modelo.png',
-    type: 'image'
   },
   {
-    date: 'Futuramente',
-    title: 'A médica mais inteligente e perfeita do mundo',
-    description: 'Que orgulho de você, minha querida!',
+    id: 5,
+    title: 'Conquistas',
+    description: 'Orgulhoso das suas realizações.',
+    date: 'Julho 2023',
     image: '/images/medica.png',
-    type: 'image'
   },
   {
-    date: 'Sempre será',
-    title: 'A bodybuilder mais forte do mundo',
-    description: 'E tome elevação de ombro 💪',
+    id: 6,
+    title: 'Sua Força',
+    description: 'Admirando sua determinação.',
+    date: 'Agosto 2023',
     media: '/videos/forte.mp4',
-    thumbnail: '/images/forte.jpg',
+    thumbnail: '/images/forte.JPG',
     type: 'video'
   },
   {
-    date: 'Cada Momento',
-    title: 'Sua Luz Única',
-    description: 'Quero sempre andar ao seu lado, te amo muito.',
+    id: 7,
+    title: 'Caminhando Juntos',
+    description: 'Cada passo ao seu lado é especial.',
+    date: 'Setembro 2023',
     media: '/videos/teste.mp4',
-    thumbnail: '/images/caminhando.jpg',
+    thumbnail: '/images/caminhando.JPG',
     type: 'video'
   },
   {
-    date: 'A todo momento',
-    title: 'Motorista invejável',
-    description: 'Adoro minhas caronas com você, apesar dos estresses com o trânsito...',
+    id: 8,
+    title: 'Motorista Linda',
+    description: 'Você dirigindo é a coisa mais linda que existe.',
+    date: 'Outubro 2023',
     media: '/videos/motoristalinda.mp4',
-    thumbnail: '/images/motorista.jpg',
+    thumbnail: '/images/motorista.JPG',
     type: 'video'
   },
   {
-    date: 'Para sempre',
-    title: 'Fã do Vitor Sapo',
-    description: 'Uebeti 🐸',
-    image: '/images/vitorsapo.jpg',
-    type: 'image'
+    id: 9,
+    title: 'Momentos Engraçados',
+    description: 'Porque rir junto é a melhor parte.',
+    date: 'Novembro 2023',
+    image: '/images/vitorsapo.JPG',
   },
-  
 ];
 
 export default function Timeline() {
