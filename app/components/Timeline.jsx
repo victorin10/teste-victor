@@ -22,7 +22,7 @@ const timelineEvents = [
     date: 'Sempre Presente',
     title: 'Seu Coração Generoso',
     description: 'Sua forma de cuidar de mim, mesmo nas coisas mais simples, me deixa muito feliz. Você é mais do que sonhei!',
-    image: '/images/cozinhando.jpg',
+    image: '/images/cozinhando.png',
     type: 'image'
   },
   {
@@ -44,7 +44,7 @@ const timelineEvents = [
     title: 'A bodybuilder mais forte do mundo',
     description: 'E tome elevação de ombro 💪',
     media: '/videos/forte.mp4',
-    thumbnail: '/images/forte.jpg',
+    thumbnail: '/images/forte.png',
     type: 'video'
   },
   {
@@ -52,7 +52,7 @@ const timelineEvents = [
     title: 'Sua Luz Única',
     description: 'Quero sempre andar ao seu lado, te amo muito.',
     media: '/videos/teste.mp4',
-    thumbnail: '/images/caminhando.jpg',
+    thumbnail: '/images/caminhando.png',
     type: 'video'
   },
   {
@@ -60,14 +60,14 @@ const timelineEvents = [
     title: 'Motorista invejável',
     description: 'Adoro minhas caronas com você, apesar dos estresses com o trânsito...',
     media: '/videos/motoristalinda.mp4',
-    thumbnail: '/images/motorista.jpg',
+    thumbnail: '/images/motorista.png',
     type: 'video'
   },
   {
     date: 'Para sempre',
     title: 'Fã do Vitor Sapo',
     description: 'Uebeti 🐸',
-    image: '/images/vitorsapo.jpg',
+    image: '/images/vitorsapo.png',
     type: 'image'
   },
   
