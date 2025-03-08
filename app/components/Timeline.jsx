@@ -1,6 +1,6 @@
 'use client';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 
 const timelineEvents = [
@@ -69,26 +69,52 @@ const timelineEvents = [
     description: 'Uebeti 🐸',
     image: '/images/vitorsapo.png',
     type: 'image'
-  },
-  
+  }
 ];
 
 export default function Timeline() {
   const containerRef = useRef(null);
   const [selectedMedia, setSelectedMedia] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const scrollLeft = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollBy({ left: -300, behavior: 'smooth' });
-    }
-  };
+  // Função otimizada para scroll
+  const scrollTo = useCallback((direction) => {
+    const container = containerRef.current;
+    if (!container) return;
 
-  const scrollRight = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
-    }
-  };
+    const cardWidth = 384; // w-96
+    const gap = 48; // gap-12
+    const scrollDistance = cardWidth + gap;
+    
+    const newScrollLeft = direction === 'left' 
+      ? container.scrollLeft - scrollDistance
+      : container.scrollLeft + scrollDistance;
+
+    container.scrollTo({
+      left: newScrollLeft,
+      behavior: 'smooth'
+    });
+
+    // Atualizar índice atual
+    const newIndex = Math.round(newScrollLeft / scrollDistance);
+    setCurrentIndex(Math.max(0, Math.min(newIndex, timelineEvents.length - 1)));
+  }, []);
+
+  // Observar scroll para atualizar índice
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const cardWidth = 384 + 48; // width + gap
+      const newIndex = Math.round(container.scrollLeft / cardWidth);
+      setCurrentIndex(Math.max(0, Math.min(newIndex, timelineEvents.length - 1)));
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen relative overflow-hidden py-16 px-4">
@@ -109,8 +135,13 @@ export default function Timeline() {
 
         <div className="relative max-w-6xl mx-auto">
           <button
-            onClick={scrollLeft}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 backdrop-blur-sm p-4 rounded-full shadow-lg hover:bg-rose-50 transition-all hover:scale-110 duration-300"
+            onClick={() => scrollTo('left')}
+            className={`absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 backdrop-blur-sm p-4 rounded-full shadow-lg transition-all duration-300 ${
+              currentIndex === 0 
+                ? 'opacity-50 cursor-not-allowed' 
+                : 'hover:bg-rose-50 hover:scale-110'
+            }`}
+            disabled={currentIndex === 0}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -119,15 +150,15 @@ export default function Timeline() {
 
           <div
             ref={containerRef}
-            className="flex overflow-x-auto gap-12 pb-8 px-4 timeline-container hide-scrollbar snap-x snap-mandatory"
+            className="flex overflow-x-auto gap-12 pb-8 px-4 timeline-container hide-scrollbar snap-x snap-mandatory scroll-smooth"
           >
             {timelineEvents.map((event, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="flex-shrink-0 w-96 bg-white/90 backdrop-blur-sm rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-rose-100"
+                className="timeline-card flex-shrink-0 w-96 bg-white/90 backdrop-blur-sm rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-rose-100 snap-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
               >
                 <div 
                   className="h-64 relative cursor-pointer overflow-hidden group flex items-center justify-center"
@@ -141,6 +172,9 @@ export default function Timeline() {
                         fill
                         className="group-hover:scale-110 transition-transform duration-500 object-contain"
                         style={{ objectPosition: 'center' }}
+                        loading="lazy"
+                        sizes="384px"
+                        quality={75}
                       />
                     </div>
                   ) : (
@@ -152,6 +186,9 @@ export default function Timeline() {
                           fill
                           className="group-hover:scale-110 transition-transform duration-500 object-contain"
                           style={{ objectPosition: 'center' }}
+                          loading="lazy"
+                          sizes="384px"
+                          quality={75}
                         />
                       </div>
                       <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300">
@@ -183,13 +220,32 @@ export default function Timeline() {
           </div>
 
           <button
-            onClick={scrollRight}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 backdrop-blur-sm p-4 rounded-full shadow-lg hover:bg-rose-50 transition-all hover:scale-110 duration-300"
+            onClick={() => scrollTo('right')}
+            className={`absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 backdrop-blur-sm p-4 rounded-full shadow-lg transition-all duration-300 ${
+              currentIndex >= timelineEvents.length - 1 
+                ? 'opacity-50 cursor-not-allowed' 
+                : 'hover:bg-rose-50 hover:scale-110'
+            }`}
+            disabled={currentIndex >= timelineEvents.length - 1}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
+
+          {/* Indicador de progresso */}
+          <div className="flex justify-center mt-6 gap-2">
+            {timelineEvents.map((_, index) => (
+              <div
+                key={index}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? 'w-6 bg-rose-500'
+                    : 'w-2 bg-rose-200'
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
@@ -219,12 +275,14 @@ export default function Timeline() {
                   fill
                   style={{ objectFit: 'contain' }}
                   className="rounded-lg"
+                  priority
                 />
               ) : (
                 <video
                   className="w-full h-full rounded-lg"
                   controls
                   autoPlay
+                  playsInline
                   src={selectedMedia.media}
                 />
               )}
@@ -243,6 +301,16 @@ export default function Timeline() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <style jsx>{`
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </div>
   );
 } 
